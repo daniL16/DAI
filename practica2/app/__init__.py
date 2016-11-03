@@ -1,14 +1,11 @@
 from flask import Flask,current_app,request
 import mandelbrot
 import os.path
+import svg
 
 app = Flask(__name__)
-
-@app.route('/')
-def index():
-    print 'Para acceder al fractal : /fractal'
-    
-    
+  
+@app.route('/',methods=['GET'])
 @app.route('/fractal',methods=['GET'])
 def formulario():
     if request.args.get('x1') is None:
@@ -21,14 +18,19 @@ def formulario():
         ancho = request.args.get('ancho')
         iteraciones = request.args.get('iteraciones')
         nombre=x1+x2+y1+y2+ancho+iteraciones+'.png'
-        ruta='./app/static/'+nombre
-        
+        ruta='./static/'+nombre
         if  os.path.exists(ruta):
             return current_app.send_static_file(nombre)
         else:
             mandelbrot.renderizaMandelbrot(float(x1),float(y1), float(x2), float(y2), int(ancho), int(iteraciones), ruta)
             return current_app.send_static_file(nombre)
-       
-       
+        
+@app.route('/svg')
+def print_svg():
+    svg.random_svg()
+    return current_app.send_static_file('random_svg.svg')
+
+
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug='True')
