@@ -38,6 +38,10 @@ a:hover{
     display: inline;
     margin: 0 10px 0 0;
 }
+#izquierda{
+    width: 30%;
+}
+̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣̣
 #menu ul {
     list-style-type: none;
     margin: 0px;
@@ -45,6 +49,7 @@ a:hover{
     width: 200px;
     font-family: Arial, sans-serif;
     font-size: 11pt;
+    height: auto;
 }
 #menu ul li {
     background-color: #666;
@@ -62,17 +67,25 @@ a:hover{
     border-left: 10px solid #333;
     color: #fff;
 }
+
+#registro{
+    width: 65%;
+    float: right;
+}
 li a:hover {
     background-color: #111111;
 }
-
 
 .clear{
     clear:both; 
     }
 
-
+#texto {
+    float: right;
+    width: 70%;
+}
 footer{
+    clear: both;
     background-color: #bfbfbf;
     margin: 0 auto;
     width:80%;

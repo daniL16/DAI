@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-        </section>
-        <section id="derecha">
-       <p>enemos un punto mas que tocar antes de terminar por hoy.
+        {% block body %}
+
+
+        
+       <span id="texto">Tenemos un punto mas que tocar antes de terminar por hoy.
 
 Nuestra aplicación web microblog necesitará una barra de navegación en el tope de la página con unos enlaces. En ella podrás obtener el enlace para editar tu perfil, para ingresar, para cerrar sesión, etc.
 
@@ -10,4 +12,11 @@ Podríamos añadir una barra de navegación a nuestra plantilla index.html, pero
 En vez de eso, podemos usar la característica de herencia de plantilla de Jinja2’s, la cual permite mover parte de la presentación de la página que es común en todas las plantillas y ponerla en una plantilla base desde la que todas las demás plantillas deriven.
 
 Entonces, definamos una plantilla base que incluya la barra de navegación y tambien un poco de lógica que implementamos atrás (archivo app/templates/base.html):</p>
-        </section>
+
+<br>
+
+El valor justify indica que los contenidos del elemento se deben mostrar de forma justificada, es decir, igualando la longitud de todas las líneas del texto. El estándar de CSS 2.1 no establece el algoritmo que se debe utilizar para justificar los contenidos, por lo que cada navegador define su propio algoritmo.
+
+El principal problema del valor justify es que los navegadores no son capaces de dividir con guiones las palabras que no caben enteras en una línea, tal y como hacen todos los procesadores de texto avanzados. Por este motivo, este valor hace que el texto muestre espacios en blanco demasiado grandes, sobre todo en las columnas de texto estrechas:
+
+{% endblock %}
