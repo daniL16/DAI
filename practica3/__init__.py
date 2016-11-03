@@ -4,6 +4,7 @@ from flask import url_for, escape, request
 import shelve
 import re
 from flask_shelve import init_app
+from collections import deque
 
 app = flask.Flask(__name__)
 app.config['SHELVE_FILENAME'] = 'shelve.db'
@@ -56,15 +57,11 @@ def logout():
 
 @app.route('/page1')
 def page1():
-    ult = ultima()
-    session[ult]='page1.html'
     return render_template('page1.html')
 
 @app.route('/page2')
 def page2():
-    ult = ultima()
-    session[ult]='page2.html'
-    return render_template('page2.html')
+    return render_template('page2.html',title=' Elementos flotantes y clearing')
 
     
 @app.route('/usuario/datos')
@@ -74,7 +71,7 @@ def usuario():
     user = db[key]
     return render_template("usuario.html", user=user)
 
-@app.route('/usuario/modificar',methods=["POST"])
+@app.route('/usuario/modificar',methods=["GET","POST"])
 def modificar_usuario():
     db = shelve.open('shelve.db')
     username = session["username"]
@@ -89,7 +86,14 @@ def modificar_usuario():
     else:
         key = "users:{}".format(username)
         user = db[key]
-        return render_template("moficiar_usuario.html", user=user)
+        return render_template("modificar_usuario.html", user=user)
 
+@app.after_request
+def save_history(response):
+    if "username" in session and response.mimetype == "text/html":
+            h = deque(session["history"], 3)
+            h.appendleft(request.path)
+            session["history"] = list(h)
+    return response
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug='True')

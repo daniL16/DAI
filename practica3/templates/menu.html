@@ -11,6 +11,11 @@
   {% if session["username"] %}
     <li><a href="{{ url_for("usuario") }}" title="...">Ver datos usuario</a></li>
     <li><a href="{{ url_for("modificar_usuario") }}" title="...">Modificar datos usuario</a></li>
+     <ul>Ultimas paginas visitadas
+          {% for link in session["history"] %}
+              <a href="{{ link }}">{{ link }}</a><br>
+          {% endfor %}
+     </ul>
     {% endif %}
     </ul>
     </div>
