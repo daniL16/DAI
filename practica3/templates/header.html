@@ -1,26 +1,39 @@
-<head>
-        <meta charset="utf-8" />
-        <title id="title">Practica3</title>
-        <link rel = "stylesheet" type = "text/css" href = "estilos.css" />
-    </head>
 
-    <body>
-
-        <header id="header"> 
+     <header id="header"> 
             <section id="logo">
-                <a href="index.html"><img src="imagenes/logo.png"/></a> 
+                <a href="index.html"><img src="/imagenes/logo.png"/></a> 
             <h1>Mi pagina web</h1>
                 <h2>Desarrollo de Aplicaciones para Internet</h2>
             </section>
 
-            {% if user %}
-            
-            {% else %}
-            <form action="" method="post">
-                <input type="text" name="user" value="usuario"/>
-                <input type="password" name="pwd" value="password"/>
-                <input type="submit" value="Acceder" />
-            </form>
-            {% endif %}
+           
+                
+{% if session["username"] %}
+      <div class="logged-user">
+	<p>Hola, <a href="/users/{{ session["username"] }}"><strong>{{ session["username"] }}</strong></a></p>
+	<p><a href="{{ url_for("logout") }}">Cerrar sesión</a></p>
+      </div>
+      {% else %}
 
+                % endif
+
+  <form action="/login" class="pure-form pure-g" method="POST">
+	<div class="pure-u-1-2">
+	  <input name="username" type="text" placeholder="Usuario" />
+	</div>
+	<div class="pure-u-1-2">
+	  <input name="password" type="password" placeholder="Contraseña" />
+	</div>
+	<div class="pure-u-1-2">
+	  <input type="submit" value="Iniciar sesión"  />
+	</div>
+	<div class="pure-u-1-2">
+	  <a href="{{ url_for("registro") }}">Registrarse</a>
+	</div>
+      </form>
+      {% endif %}
         </header>
+  
+       
+        
+      

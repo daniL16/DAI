@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-    {% extends "header.html" %}
-        
-        <section id="izquierda">
-            <div id="menu">
- <ul>
-  <li><a href="..." title="...">Home</a></li>
-  <li><a href="..." title="...">Archivos</a></li>
-  <li><a href="..." title="...">Enlaces</a></li>
-  <li><a href="..." title="...">Acerca de</a></li>
- </ul>
-</div>
+{% extends "base.html" %}
         </section>
         <section id="derecha">
+       <p>enemos un punto mas que tocar antes de terminar por hoy.
+
+Nuestra aplicación web microblog necesitará una barra de navegación en el tope de la página con unos enlaces. En ella podrás obtener el enlace para editar tu perfil, para ingresar, para cerrar sesión, etc.
+
+Podríamos añadir una barra de navegación a nuestra plantilla index.html, pero a medida que nuestra aplicación crezca necesitaríamos implementar mas páginas, y esta barra de navegación debería ser copiada y pegada en todas ellas. Por ello tendríamos que tener todas estás copias idénticas de la barra de navegación en perfecta sincronía, lo que puede convertirse en una gran carga de trabajo si tenemos montón de páginas y plantillas.
+
+En vez de eso, podemos usar la característica de herencia de plantilla de Jinja2’s, la cual permite mover parte de la presentación de la página que es común en todas las plantillas y ponerla en una plantilla base desde la que todas las demás plantillas deriven.
+
+Entonces, definamos una plantilla base que incluya la barra de navegación y tambien un poco de lógica que implementamos atrás (archivo app/templates/base.html):</p>
         </section>
-    </body>
-   
-</html>

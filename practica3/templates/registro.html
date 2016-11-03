@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Registrar un nuevo usuario{% endblock %}
+{% block body %}
+<form action="/usuario"  method="POST">
+    <input name="name" type="text" placeholder="Nombre" class="pure-input-1" /><br>
+    <input name="email" type="email" placeholder="email@example.org" class="pure-input-1" /><br>
+    <input name="username" type="text" placeholder="Usuario" class="pure-input-1" /><br>
+    <input name="password" type="password" placeholder="Contraseña" class="pure-input-1" /><br>
+  <input type="submit" value="Registrarme" class="pure-button pure-button-primary pure-input-1" /><br>
+</form>
+{% endblock %}
