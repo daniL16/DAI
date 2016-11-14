@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+        {% block body %}
+
+
+        
+       <span id="texto">
+           Como ya hemos visto antes, la caja madre no se amplía normalmente para contener a los hijos flotantes. Esto a menudo puede provocar confusiones, por ejemplo cuando todos los hijos de un elemento flotan al crear un menú horizontal a partir de una lista no ordenada mediante la flotación de todos los elementos li. Como las cajas flotantes se sacan del flujo y no afectan a la caja madre, el hecho de hacer flotar las hijas hace que en realidad la madre quede vacía y que pase a tener una altura cero. Algunas veces esto no es lo que queremos, por ejemplo a la hora de definir un fondo para la madre. Si la madre tiene una altura cero, el fondo no se verá.
+
+Es evidente que necesitamos algún mecanismo para conseguir que una caja madre se amplíe para incluir a sus hijas flotantes. El método tradicional consistía en incluir un elemento adicional en el etiquetado, justo antes de la etiqueta de cierre de la caja madre, y definir en él clear:both. Esto funciona, pero no es muy aceptable porque implica introducir un etiquetado adicional poco semántico e innecesario. Por suerte, hay otras maneras que explicaremos a continuación.
+
+El primer método consiste sencillamente en hacer flotar también a la madre. Las cajas flotantes se amplían siempre para incluir todos sus cajas hijas.
+
+    Para probarlo en nuestro documento de ejemplo, eliminad otra vez la regla para #span-b, haced flotar el primer párrafo de la manera siguiente y guardad y actualizad:
+
+    #p1 {
+       float: left;
+    }
+
+    El párrafo se amplía ahora hasta incluir el elemento flotante de color verde. Todo eso está muy bien, pero algunas veces no tenemos la opción de flotar a la madre. Otra manera de hacer lo mismo sin flotar a la caja madre es definiendo la propiedad overflow (desbordamiento) de la madre a un valor diferente de visible. Si definís el valor hidden y no especificáis ninguna altura, la caja madre incluirá las cajas hijas flotantes.
+
+    Sustituid la última regla por la siguiente, guardad y actualizad:
+
+    #p1 {
+       overflow: hidden;
+    }
+
+Tened en cuenta que el último método no funciona con Internet Explorer 6 o anterior.
+
+{% endblock %}

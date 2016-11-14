@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Nuevo restaurante{% endblock %}
+{% block body %}
+<form id="registro" action="/nuevo_restaurante"  method="POST">
+    <input name="building" type="text" placeholder="Building" class="pure-input-1" /><br>
+    <input name="coord1" type="number" placeholder="Coords" class="pure-input-1"  step="0.01"/> 
+    <input name="coord2" type="number" placeholder="Coords" class="pure-input-1"  step="0.01"/> <br>
+    <input name="street" type="text" placeholder="Street" class="pure-input-1" /><br>
+    <input name="zipcode" type="text" placeholder="ZipCode" class="pure-input-1" /><br>
+    <input name="borough" type="text" placeholder="Borough" class="pure-input-1" /><br>
+    <input name="cuisine" type="text" placeholder="Cuisine" class="pure-input-1" /><br>
+    <input name="name" type="text" placeholder="Name" class="pure-input-1" /><br>
+    <input name="rest_id" type="text" placeholder="Id" class="pure-input-1" /><br>
+  <input type="submit" value="Registrar" class="pure-button pure-button-primary pure-input-1" /><br>
+</form>
+{% endblock %}
