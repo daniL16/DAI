@@ -1,48 +1,47 @@
-<!--<header id="header"> 
-            <section id="logo">
-                <img class="logo" src="/static/logo.png"/> 
-            <h1>Mi pagina web</h1>
-                <h4>Desarrollo de Aplicaciones para Internet</h4>
-            </section>
--->
-   <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-                          
-{% if session["username"] %}
-      <div class="logged-user">
-	<p>Hola, <a href="/users/{{ session["username"] }}"><strong>{{ session["username"] }}</strong></a></p>
-	<p><a href="{{ url_for("logout") }}">Cerrar sesión</a></p>
-      </div>
-      {% else %}
-        <div id="navbar" class="navbar-collapse collapse" method="POST">
-          <form action="/login" class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" name="username" placeholder="Username" class="form-control">
+<header>  
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img id="logo" src="/static/logo.png"/> 
+                <a class="navbar-brand" href="#">Shalalalalala</a>
             </div>
-            <div class="form-group">
-              <input type="password" name="password" placeholder="Password" class="form-control">
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav ">
+                    <li> <a href="#" class="aumentarFuente">Aumentar Fuente</a></li>
+                    <li><a href="#" class="disminuirFuente">Disminuir Fuente</a> </li>
+                    <li><a href="#" class="cambiarColor">Cambiar Color</a>  </li>
+                </ul>
+            
+            {% if session["username"] %}
+                <div class="logged-user">
+	               <p>Hola, <a href="/users/{{ session["username"] }}"><strong>{{ session["username"] }}</strong></a></p>
+	               <p><a href="{{ url_for("logout") }}">Cerrar sesión</a></p>
+                </div>
+            {% else %}
+                <div id="navbar" class="navbar-collapse collapse" method="POST">
+                    <form action="/login" class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" name="username" placeholder="Username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">Iniciar Sesion</button>
+                        <div class="pure-u-1-2">
+	                       <a href="{{ url_for("registro") }}">Registrarse</a>
+                        </div>
+                    </form>
+                    
+                
+            {% endif %}
             </div>
-            <button type="submit" class="btn btn-success">Iniciar Sesion</button>
-              <div class="pure-u-1-2">
-	  <a href="{{ url_for("registro") }}">Registrarse</a>
-	</div>
-          </form>
         </div>
-      </div>
-    </nav>         
-
-      {% endif %}
-        </header>
+    </nav>           
+</header>
   
        
-        
-      
+    <!--  <form class="navbar-form navbar-collapse">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+
+-->

@@ -2,22 +2,54 @@
 <html>
   <head>
     <title>{% block title %}{% endblock %}</title>
-    <metaarset="utf-8">
-    <!--<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/static/estilos.css">-->
-
-        <body>
-    {% include "header.html" %}
     
-    {% block body %}{% endblock %}
-	 
-    {% include "menu.html" %}
-    {% include "footer.html" %}
-            
-            
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+     <link rel="stylesheet" type="text/css" href="/static/estilos.css">   
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.css">   
+    <script src="/static/js/jquery.js" type="text/javascript"></script>
+    <script src="/static/js/p5.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="http://code.highcharts.com/highcharts.src.js"></script>
+    <script src="/static/js/highchart.js"></script>
+    <script src="/static/js/maps.js"></script>
+     
+
+    </head>
+    
+    <body>
+    {% include "header.html" %} 
+    <div class="row">
+    
+        </div>
+    {% block body %}{% endblock %} 
+     <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="sidebar-nav">
+            <li>
+                <a href="" id="rest">Restaurantes</a>
+                    <ul id="submenu">
+                        <li><a href="{{ url_for("nuevo_restaurante")}}"> Nuevo Restaurante</a></li>
+                        <li><a href="{{ url_for("buscar_restaurante")}}"> Buscar Restaurante</a></li>
+                    </ul>
+            </li>
+            <li> <a href="{{ url_for("highchart")}}"> Highchart </a></li>
+            <li> <a href="{{ url_for("map")}}"> Google Maps </a></li>
+            <li> <a href="{{ url_for("twitter")}}"> Twitter </a></li>
+        </ul>
+        </div>  
+     
+    <footer class="panel-footer">
+        <ul class="list-unstyled">
+            <li>Sitio web creado por : Daniel López García</li>
+
+        </ul>
+    </footer>
+    </body>
+</html>
+
             
     
-
-   
+ 
+         
+		  
 
     

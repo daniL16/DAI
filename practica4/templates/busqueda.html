@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Buscar restaurante{% endblock %}
+
+{% block body %}
+<div class="container">
+<form class="form" action="/buscar_restaurante"  method="POST">
+    <input name="cuisine" type="text" placeholder="Cuisine" class="pure-input-1" /><br>
+    <input name="zipcode" type="text" placeholder="Zipcode" class="pure-input-1" /><br>
+    <input type="submit" value="Buscar" class="pure-button pure-button-primary pure-input-1" /><br>
+</form>
+</div>
+{% endblock %}

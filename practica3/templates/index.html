@@ -1,22 +1,39 @@
 {% extends "base.html" %}
-        {% block body %}
+{% block body %}
+
+ <div class="jumbotron">
+      <div class="container">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      
+    </div> <!-- /container -->
 
 
-        
-       <span id="texto">Tenemos un punto mas que tocar antes de terminar por hoy.
-
-Nuestra aplicación web microblog necesitará una barra de navegación en el tope de la página con unos enlaces. En ella podrás obtener el enlace para editar tu perfil, para ingresar, para cerrar sesión, etc.
-
-Podríamos añadir una barra de navegación a nuestra plantilla index.html, pero a medida que nuestra aplicación crezca necesitaríamos implementar mas páginas, y esta barra de navegación debería ser copiada y pegada en todas ellas. Por ello tendríamos que tener todas estás copias idénticas de la barra de navegación en perfecta sincronía, lo que puede convertirse en una gran carga de trabajo si tenemos montón de páginas y plantillas.
-
-En vez de eso, podemos usar la característica de herencia de plantilla de Jinja2’s, la cual permite mover parte de la presentación de la página que es común en todas las plantillas y ponerla en una plantilla base desde la que todas las demás plantillas deriven.
-
-Entonces, definamos una plantilla base que incluya la barra de navegación y tambien un poco de lógica que implementamos atrás (archivo app/templates/base.html):</p>
-
-<br>
-
-El valor justify indica que los contenidos del elemento se deben mostrar de forma justificada, es decir, igualando la longitud de todas las líneas del texto. El estándar de CSS 2.1 no establece el algoritmo que se debe utilizar para justificar los contenidos, por lo que cada navegador define su propio algoritmo.
-
-El principal problema del valor justify es que los navegadores no son capaces de dividir con guiones las palabras que no caben enteras en una línea, tal y como hacen todos los procesadores de texto avanzados. Por este motivo, este valor hace que el texto muestre espacios en blanco demasiado grandes, sobre todo en las columnas de texto estrechas:
-
+    
 {% endblock %}
