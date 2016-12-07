@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Nuevo restaurante{% endblock %}
+
 {% block body %}
+<div class="col-md-8">
 <form id="registro" action="/nuevo_restaurante"  method="POST">
     <input name="building" type="text" placeholder="Building" class="pure-input-1" /><br>
     <input name="coord1" type="number" placeholder="Coords" class="pure-input-1"  step="0.01"/> 
@@ -13,4 +15,5 @@
     <input name="rest_id" type="text" placeholder="Id" class="pure-input-1" /><br>
   <input type="submit" value="Registrar" class="pure-button pure-button-primary pure-input-1" /><br>
 </form>
+</div>
 {% endblock %}

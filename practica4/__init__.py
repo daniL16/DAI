@@ -17,9 +17,11 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 def highchart():
     return render_template("highchart.html")
 
+
 @app.route("/map")
 def map():
     return render_template("map.html")
+
 
 @app.route("/twitter")
 def twitter():
@@ -37,9 +39,12 @@ def twitter():
     print(tweets[0].author)
     return render_template("map.html")
     
+
 @app.route("/")
 def index():
         return render_template("index.html")
+
+    
 
 @app.route("/registro")
 def registro():
@@ -64,38 +69,40 @@ def nuevo_usuario():
     else:
         return redirect(url_for("registro"))
     
-@app.route('/login',methods=["POST"])
+
+
+
+@app.route('/login',methods=['GET', "POST"])
 def login():
-    username = request.form["username"]
-    db = shelve.open('shelve.db')
-    key = "users:{}".format(username)
-    if db.has_key(key) and db[key]["password"] == request.form["password"]:
-        session["username"] = request.form["username"]
-        session["history"] = []
+    if request.method=="POST":
+        username = str(request.form["username"])
+        db = shelve.open('shelve.db')
+        key = "users:{}".format(username)
+        print 2;
+        if db.has_key(key) and db[key]["password"] == request.form["password"]:
+            session["username"] = request.form["username"]
+            session["history"] = []
         
     return redirect(url_for("index"))
-    
+   
+        
+        
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
 
 
-@app.route('/page1')
-def page1():
-    return render_template('page1.html')
 
-@app.route('/page2')
-def page2():
-    return render_template('page2.html',title=' Elementos flotantes y clearing')
 
-    
 @app.route('/usuario/datos')
 def usuario():
     db = shelve.open('shelve.db')
     key = "users:{}".format(session["username"])
     user = db[key]
     return render_template("usuario.html", user=user)
+
+
 
 @app.route('/usuario/modificar',methods=["GET","POST"])
 def modificar_usuario():
@@ -114,6 +121,8 @@ def modificar_usuario():
         user = db[key]
         return render_template("modificar_usuario.html", user=user)
 
+
+
 @app.after_request
 def save_history(response):
     if "username" in session and response.mimetype == "text/html":
@@ -121,6 +130,7 @@ def save_history(response):
             h.appendleft(request.path)
             session["history"] = list(h)
     return response
+
 
 @app.route("/nuevo_restaurante", methods=["GET","POST"])
 def nuevo_restaurante():
@@ -141,6 +151,7 @@ def nuevo_restaurante():
         return redirect(url_for("index"))
     else:
         return render_template("nuevo_restaurante.html")
+
 
 @app.route("/modificar_restaurante", methods=["GET","POST"])
 def modificar_restaurante():
@@ -164,6 +175,8 @@ def modificar_restaurante():
         rest = collection.find_one({"restaurant_id":id});
         return render_template("modificar_restaurante.html",rest=rest)
 
+
+
 @app.route("/buscar_restaurante", methods=["GET","POST"])
 def buscar_restaurante():
     if request.method=="POST":
@@ -182,20 +195,6 @@ def buscar_restaurante():
     else:
         return render_template("busqueda.html")
     
-    
-@app.route("/puntuar_restaurante", methods=["GET","POST"])
-def puntuar_restaurante():
-    if request.method=="POST":
-        grade = request.form['grade'];
-        score = request.form['score'];
-    else:
-        return render_template("range.html",id);
-    
-@app.route('/quiero_filas_desde_la')
-def devuelve_filas():
-    desde = request.args.get('fila', '',)
-    filas = db.restaurants.find().skip(int(desde)).limit(10)
-    #return jsonify(filas)
 
 
 if __name__ == '__main__':
