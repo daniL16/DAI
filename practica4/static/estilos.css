@@ -2,9 +2,16 @@
     float:left;
 }
 
-#map {
-width: 100%;
-height: 500px;
-border: 1px solid #000;
+#menu {
+    background-color:  rgb(211, 214, 212);
+}
+#menu.li{
+    background-color:  rgb(211, 214, 212);
+}
+#navegador {
+    background-color:  rgb(211, 214, 212);;
 }
 
+#pie{
+    background-color:  rgb(211, 214, 212);
+}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Nuevo restaurante{% endblock %}
+{% block title %}Modificar restaurante{% endblock %}
 {% block body %}
 <form id="registro" action="/modificar_restaurante"  method="POST">
     <input name="rest_id" type="text" readonly="readonly" placeholder="Id" class="pure-input-1" value="{{rest["restaurant_id"]}}"/><br>

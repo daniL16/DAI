@@ -30,17 +30,41 @@ $(document).ready(function(){
 	return false;
 });
     
-   $('#submenu').hide();
+  $('#submenu').hide();
     
   
   $('#rest').hover(function(e) {
        $('#submenu').toggle(300,stop);
      });
-	
-    
 
-        
 
-    
+
+    function paginador(page){
+    var pagina_actual=page;
+
+ $.ajax({
+                url: "/quiero_filas_desde_la",
+                data: { fila: pagina_actual*10},
+                type: 'get',                        
+                success: function(datos) {
+                        Visualiza_filas (datos);  
+                },
+                failure: function(datos) {
+                        alert('esto no vá');
+                }
+        });
+}
+
+
+
 });
 
+
+function Visualiza_datos (datos) {
+    console.log(lista_articulos);
+    var $contendor_principal = $('#resultado_busqueda') ;
+}
+   
+$('#page2').on('click', function(e){
+   paginador(2);
+});

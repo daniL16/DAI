@@ -7,45 +7,50 @@ from flask_shelve import init_app
 from collections import deque
 import pymongo
 import tweepy
+import feedparser
 
 app = flask.Flask(__name__)
 app.config['SHELVE_FILENAME'] = 'shelve.db'
+consumer_key = 'mNqfsXYES7CHKpCLi1fp8J5yT'
+consumer_secret = 'uapqEQVl95rKOY2NMbLTw5vL2pmj0YT1glzpTi7Esbhk0Il8fh'
+access_token = '268808881-L9Zt2aCRL4udK43Ke3HUn4zXW9MtpI2Wgo7zWKJY'
+access_token_secret = '9HnMe1w8q65Ps661EHiOJOZ3NliKW58NM4vmShX65RH12'
+# OAuth process, using the keys and tokens
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+# Creation of the actual interface, using authentication
+api = tweepy.API(auth)
+
 init_app(app)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+   # Consumer keys and access tokens, used for OAuth
 
+    
 @app.route("/highchart")
 def highchart():
     return render_template("highchart.html")
 
 
-@app.route("/map")
-def map():
-    return render_template("map.html")
 
 
 @app.route("/twitter")
 def twitter():
-    # Consumer keys and access tokens, used for OAuth
-    consumer_key = 'mNqfsXYES7CHKpCLi1fp8J5yT'
-    consumer_secret = 'uapqEQVl95rKOY2NMbLTw5vL2pmj0YT1glzpTi7Esbhk0Il8fh'
-    access_token = '268808881-L9Zt2aCRL4udK43Ke3HUn4zXW9MtpI2Wgo7zWKJY'
-    access_token_secret = '9HnMe1w8q65Ps661EHiOJOZ3NliKW58NM4vmShX65RH12'
-    # OAuth process, using the keys and tokens
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
-    # Creation of the actual interface, using authentication
-    api = tweepy.API(auth)
-    tweets = api.search(q='Granada', count=1)
-    print(tweets[0].author)
+ 
+    
     return render_template("map.html")
     
 
+
+
 @app.route("/")
 def index():
-        return render_template("index.html")
+        rss = feedparser.parse('https://www.meneame.net/rss')
+        entradas = rss.entries
+        return render_template("index.html",noticias=entradas)
 
     
 
+    
 @app.route("/registro")
 def registro():
     return render_template("registro.html")
@@ -73,12 +78,12 @@ def nuevo_usuario():
 
 
 @app.route('/login',methods=['GET', "POST"])
+
 def login():
     if request.method=="POST":
         username = str(request.form["username"])
         db = shelve.open('shelve.db')
         key = "users:{}".format(username)
-        print 2;
         if db.has_key(key) and db[key]["password"] == request.form["password"]:
             session["username"] = request.form["username"]
             session["history"] = []
@@ -88,6 +93,7 @@ def login():
         
         
 @app.route('/logout')
+
 def logout():
     session.clear()
     return redirect(url_for('index'))
@@ -96,6 +102,7 @@ def logout():
 
 
 @app.route('/usuario/datos')
+
 def usuario():
     db = shelve.open('shelve.db')
     key = "users:{}".format(session["username"])
@@ -105,6 +112,7 @@ def usuario():
 
 
 @app.route('/usuario/modificar',methods=["GET","POST"])
+
 def modificar_usuario():
     db = shelve.open('shelve.db')
     username = session["username"]
@@ -123,6 +131,7 @@ def modificar_usuario():
 
 
 
+
 @app.after_request
 def save_history(response):
     if "username" in session and response.mimetype == "text/html":
@@ -130,6 +139,8 @@ def save_history(response):
             h.appendleft(request.path)
             session["history"] = list(h)
     return response
+
+
 
 
 @app.route("/nuevo_restaurante", methods=["GET","POST"])
@@ -153,6 +164,8 @@ def nuevo_restaurante():
         return render_template("nuevo_restaurante.html")
 
 
+
+
 @app.route("/modificar_restaurante", methods=["GET","POST"])
 def modificar_restaurante():
     if request.method=="POST":
@@ -171,9 +184,9 @@ def modificar_restaurante():
         print collection.update({"restaurant_id":id},rest);
         return redirect(url_for("index"))
     else:
-        id = request.args.get('id');
-        rest = collection.find_one({"restaurant_id":id});
-        return render_template("modificar_restaurante.html",rest=rest)
+        return render_template("busqueda.html")
+
+
 
 
 
@@ -182,19 +195,36 @@ def buscar_restaurante():
     if request.method=="POST":
         zipcode = request.form['zipcode'];
         cuisine = request.form['cuisine'];
-        print zipcode;
+        
         if (zipcode != "" and cuisine != ""):
-            restaurants = collection.find({"zipcode":zipcode,"cuisine":cuisine}).sort([("name", pymongo.ASCENDING)]);
+            restaurants = collection.find({"address.zipcode":zipcode,"cuisine":cuisine}).sort([("name", pymongo.ASCENDING)]).limit(10);
+            rest = collection.find_one({"address.zipcode":zipcode,"cuisine":cuisine})
         elif(zipcode != ""):
-            restaurants = collection.find({"zipcode":zipcode}).sort([("name", pymongo.ASCENDING)]);
+            restaurants = collection.find({"address.zipcode":zipcode}).sort([("name", pymongo.ASCENDING)]).limit(10);
+            rest = collection.find_one({"address.zipcode":zipcode})
         elif (cuisine != ""):
-            restaurants = collection.find({"cuisine":cuisine}).sort([("name", pymongo.ASCENDING)]);
+            restaurants = collection.find({"cuisine":cuisine}).sort([("name", pymongo.ASCENDING)]).limit(10);
+            rest = collection.find_one({"cuisine":cuisine})
         else:
-            restaurants = collection.find().sort([("name", pymongo.ASCENDING)]);
-        return render_template("mostrar_restaurante.html",restaurants=restaurants)
+            restaurants = collection.find().sort([("name", pymongo.ASCENDING)]).limit(10);
+            rest = collection.find_one()
+       
+       
+        tweets = api.search(q=rest['name'], count=10)
+        return render_template("mostrar_restaurante.html",restaurants=restaurants,rest = rest,tweets=tweets)
+    
+        
     else:
         return render_template("busqueda.html")
-    
+
+
+
+@app.route('/quiero_filas_desde_la')
+def devuelve_filas():
+    desde = request.args.get('fila', '',)
+    filas = db.restaurants.find().skip(int(desde)).limit(10)
+    return jsonify(filas)
+
 
 
 if __name__ == '__main__':

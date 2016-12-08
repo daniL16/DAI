@@ -3,13 +3,13 @@
 	$(document).ready(function() {
 		chart = new Highcharts.Chart({
 			chart: {
-				renderTo: 'graficaLineal'
+				renderTo: 'grafica'
 			},
 			title: {
-				text: 'Porcentaje de Visitas por Paises'
+				text: ''
 			},
 			subtitle: {
-				text: 'Jarroba.com'
+				text: ''
 			},
 			plotArea: {
 				shadow: null,
@@ -38,22 +38,7 @@
 		    series: [{
 				type: 'pie',
 				name: 'Browser share',
-				data: [
-						['España',35.38],
-						['México',21.0],
-						['Colombia',9.45],
-						['Perú',5.74],
-						['Argentina',5.14],
-						['Chile',4.89],
-						['Venezuela',3.04],
-						['Ecuador',2.53],
-						['Bolivia',1.66],
-						['Rep. Dominicana',1.12],
-						['Guatemala',1.08],
-						['Costa Rica',1.07],
-						['Estados Unidos',1.03],
-						['+81 paises',6.87]
-					]
+				data: [					]
 			}]
 		});
 	});			
