@@ -3,17 +3,15 @@
 }
 
 #menu {
-    background-color:  rgb(211, 214, 212);
-}
-#menu.li{
-    background-color:  rgb(211, 214, 212);
-}
-#navegador {
-    background-color:  rgb(211, 214, 212);;
+    background: #2f4f4f;
+    color: white;
 }
 
+
+
 #pie{
-    background-color:  rgb(211, 214, 212);
+background: #2f4f4f;
+color: white;
 }
 
 #rss{
@@ -21,6 +19,15 @@
     overflow: auto;
 }
 
-#map {
-        height: 100%;
-      }
+#navegador {
+background: #2f4f4f;
+color: white;
+}
+
+#botones a{
+    color: white;
+}
+
+#titulo{
+    color: white;
+}

@@ -13,19 +13,20 @@
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
     <script src="/static/js/maps.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="/static/estilos.css"> 
   	
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.min.css">
+    
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<div class="row">    
+<div class="row" id="navegador">    
 <nav class="navbar navbar-default" role="navigation" id="navegador">
-    <div class="navbar-header">
+    <div class="navbar-header" id="navegador" id="navegador">
         <div class="navbar-header">
             <img id="logo" src="/static/logo.png"/> 
-            <a class="navbar-brand" href="#">Shalalalalala</a>
+            <a class="navbar-brand" href="#" id="titulo">Practicas DAI</a>
             {% if session["username"] %}
             <div class="navbar-collapse navbar-right">
 	               Hola, <a href="/users/{{ session["username"] }}"><strong>{{ session["username"] }}</strong>,
@@ -63,14 +64,13 @@
 </nav>
 </div>
     
-<div id="contenedor">
 
 <div class ="row">
     
     <div class="col-md-4">
 	    <div class="row">
-	    	<div class="col-md-12">
-		    	<div class="demo-content bg-alt">
+	    	<div class="col-md-12" >
+		    	<div class="demo-content bg-alt" id="menu">
 
 				    <div id="menu">
 				      	<div class="list-group">
@@ -113,7 +113,7 @@
     
     </div>
 <footer class="panel-footer" id="pie">
-        <p class="text-center">Sitio web creado por : Daniel López García</p>
+        <p class="text-center" id="pie">Sitio web creado por : Daniel López García</p>
 </footer>
     </body>
 </html>
