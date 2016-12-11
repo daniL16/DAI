@@ -65,7 +65,7 @@
 	<div class="panel panel-default">
 		
 		<h3>Últimas noticias Meneame</h3>
-			<dl class="dl-horizontal">
+			<dl class="dl-horizontal" id="rss">
 			{% for entrada in noticias %}
                 <h5><li><a href= {{ entrada.link }}>{{ entrada.title }}</a></li></h5>
 			{% endfor %}

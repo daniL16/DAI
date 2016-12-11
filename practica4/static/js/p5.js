@@ -38,7 +38,6 @@ $(document).ready(function(){
      });
 
 
-
     function paginador(page){
     var pagina_actual=page;
 

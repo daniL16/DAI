@@ -1,39 +1,8 @@
-<ul>
-            {% for rest in restaurants %}
-            <li>
-                <table class="table-responsive">
-                    <tr>
-    <td> Id </td>  <td>{{rest["restaurant_id"]}}</td>
-</tr>
-<tr>
-    <td> Name</td> <td> {{rest["name"]}}</td>
-</tr>
-<tr>
-    <td> Cuisine </td>      <td>{{rest["cuisine"]}}</td>
-<tr>
-    <td> Borough</td>      <td> {{rest["borough"]}}</td>
-</tr>
-     <td>Street</td>     <td>{{rest["address"]["street"]}} </td>
-<tr>
-    <td> Building</td>     <td>{{rest["address"]["building"]}} </td>
-    </tr>
-    <tr>
-    <td>ZipCode</td>     <td>{{rest["address"]["zipcode"]}} </td>
-    </tr>
-</table>
-</li>
-{% endfor %}
-</ul>
 
 
-
-
-
-function Visualiza_datos (datos) {
-    console.log(lista_articulos);
-    var $contendor_principal = $('#resultado_busqueda') ;
-}
-   
-$('#page2').on('click', function(e){
-   paginador();
-});
+/*for (contador = 0; contador < limit ; contador++){
+      var marker = new google.maps.Marker({
+          position: {{coords[contador][1]}},
+          map: map,
+          title: {{coords[contador][0]}}
+  });*/

@@ -15,3 +15,12 @@
 #pie{
     background-color:  rgb(211, 214, 212);
 }
+
+#rss{
+    height: 300px;
+    overflow: auto;
+}
+
+#map {
+        height: 100%;
+      }
