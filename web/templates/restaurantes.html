@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block tittle %} {% endblock %}
+{% block content %}
+<table>
+<thead>
+<th>Nombre</th>
+</thead>
+
+<tbody>
+{% for restaurant in rest %}
+    <tr>
+        <td>{{restaurant.name}}</td>
+        <td></td>
+        <td></td>
+    </tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+{% endblock %}

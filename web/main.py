@@ -1,6 +1,7 @@
 import flask
 import shelve
 import os.path
+import pymongo
 
 from flask import *
 from flask_shelve import init_app
@@ -42,7 +43,7 @@ def nuevoUsuario():
         db[key]={'name':key, 'pass' :request.form['pass'], 'email':  request.form['email']};
     return render_template('index.html')
 
-@app.route('/<user_name>')
+@app.route('/usuarios/<user_name>')
 def echo_usuario(user_name):
     db = shelve.open('shelve.db');
     user = db[user_name];
@@ -55,5 +56,19 @@ def editarUsuario():
     db[key]={'name':key, 'pass' :request.form['pass'], 'email':  request.form['email']};
     return render_template('index.html')
 
+@app.route('/restaurantes')
+def restaurantes():
+    rest = collection.find()
+    return render_template('restaurantes.html',rest=rest)
+
 if __name__ == '__main__':
+    #conexion DB
+    try:
+        conn=pymongo.MongoClient()
+        db = conn.test
+        collection = db.restaurants
+        print ("Connected successfully!!!")
+    except pymongo.errors.ConnectionFailure:
+        print ("Could not connect to MongoDB: %s" )
+    print (collection)
     app.run(host='0.0.0.0',debug='True')
