@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 {% block tittle %} {% endblock %}
 {% block content %}
+<form action="/restaurantes" method="get">
+    <input type="text" placeholder="Cocina" name="cuisine">
+    <input type="text" placeholder="Borough" name="borough">
+    <button type="submit">Filtrar búsqueda </button>
+</form>
 <table>
 <thead>
 <th>Nombre</th>
@@ -8,7 +13,6 @@
 <th>Borough</th>
 <th>Direccion</th>
 </thead>
-
 <tbody>
 {% for restaurant in rest %}
     <tr>
@@ -17,6 +21,7 @@
         <td>{{restaurant.borough}}</td>
         <td>{{restaurant.address.building}},{{restaurant.address.street}}</td>
         <td><form action="/editar/{{restaurant.restaurant_id}}"><button>Editar</button></form></td>
+        <td><form action="/borrarRestaurante/{{restaurant.restaurant_id}}"><button>Borrar</button></form></td>
     </tr>
 {% endfor %}
 </tbody>

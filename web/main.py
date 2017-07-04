@@ -56,9 +56,20 @@ def editarUsuario():
     db[key]={'name':key, 'pass' :request.form['pass'], 'email':  request.form['email']};
     return render_template('index.html')
 
-@app.route('/restaurantes')
+@app.route('/restaurantes',methods=['post','get'])
 def restaurantes():
-    rest = collection.find()
+    if (request.method == 'GET'):
+        if (len (request.args.get('cuisine')) > 0 and len(request.args.get('borough')) > 0  ):
+            rest = collection.find({'cuisine':request.args.get('cuisine'),'borough':request.args.get('borough')})
+        elif(len (request.args.get('cuisine')) > 0):
+            rest = collection.find({'cuisine':request.args.get('cuisine')})
+        elif (len (request.args.get('borough')) > 0):
+            rest = collection.find({'cuisine':request.args.get('borough')})
+        else:
+            rest = collection.find()
+    else:
+        rest = collection.find()
+        
     return render_template('restaurantes.html',rest=rest)
 
 @app.route('/registroRestaurante')
@@ -87,8 +98,9 @@ def nuevoRestaurante():
 @app.route('/borrarRestaurante/<rest_id>')
 def borrarRestaurante(rest_id):
     collection.delete_one({'restaurant_id':rest_id})
+    
     rest = collection.find()
-    return render_template('restaurantes.html',rests=rest )
+    return render_template('restaurantes.html',rest=rest )
 
 if __name__ == '__main__':
     #conexion DB
