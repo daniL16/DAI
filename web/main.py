@@ -61,6 +61,35 @@ def restaurantes():
     rest = collection.find()
     return render_template('restaurantes.html',rest=rest)
 
+@app.route('/registroRestaurante')
+def registroRestaurante():
+    return render_template('registroRestaurante.html')
+
+@app.route('/editar/<rest_id>')
+def editarRestaurante(rest_id):
+    rest = collection.find({'restaurant_id': rest_id})
+    return render_template('editarRestaurante.html',rest=rest)
+
+@app.route('/editarRestaurante',methods=['post'])
+def editarRest():
+    collection.update({'restaurant_id':request.form['id']},{'restaurant_id':request.form['id'],'name':request.form['nombre'], 'cuisine':request.form['cocina'], 'borough':request.form['borough'], 'address':{'zipcode':request.form['zipcode'],'street':request.form['street'],'building':request.form['building']}})
+    
+    rest = collection.find({'restaurant_id':request.form['id']})
+    return render_template('restaurantes.html',rest=rest)
+
+@app.route('/nuevoRestaurante',methods=['post'])
+def nuevoRestaurante():
+    collection.insert({'restaurant_id':request.form['id'], 'name':request.form['nombre'], 'cuisine':request.form['cocina'], 'borough':request.form['borough'], 'address':{'zipcode':request.form['zipcode'],'street':request.form['street'],'building':request.form['building']}})
+    
+    rest = collection.find({'restaurant_id':request.form['id']})
+    return render_template('restaurantes.html',rest=rest)
+
+@app.route('/borrarRestaurante/<rest_id>')
+def borrarRestaurante(rest_id):
+    collection.delete_one({'restaurant_id':rest_id})
+    rest = collection.find()
+    return render_template('restaurantes.html',rests=rest )
+
 if __name__ == '__main__':
     #conexion DB
     try:

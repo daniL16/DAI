@@ -4,14 +4,19 @@
 <table>
 <thead>
 <th>Nombre</th>
+<th>Cocina</th>
+<th>Borough</th>
+<th>Direccion</th>
 </thead>
 
 <tbody>
 {% for restaurant in rest %}
     <tr>
         <td>{{restaurant.name}}</td>
-        <td></td>
-        <td></td>
+        <td>{{restaurant.cuisine}}</td>
+        <td>{{restaurant.borough}}</td>
+        <td>{{restaurant.address.building}},{{restaurant.address.street}}</td>
+        <td><form action="/editar/{{restaurant.restaurant_id}}"><button>Editar</button></form></td>
     </tr>
 {% endfor %}
 </tbody>
