@@ -32,7 +32,8 @@
   </head>
 
   <body>
-
+    <div class="container">
+    <div class="row">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -42,12 +43,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Mi Web</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
          
             {% if session['username'] %}
-            <p>Hola, {{session['username']}},<a href='{{url_for("logout")}}'>Cerrar Sesion</a></p>
+            <div class="navbar-collapse navbar-right">
+            <p>Hola, {{session['username']}},<a href='{{url_for("logout")}}'>Cerrar Sesion</a></p></div>
           {% else %}
              <form class="navbar-form navbar-right" action="/login" method="post">
             <div class="form-group">
@@ -60,35 +62,50 @@
           </form>
             
           {% endif %}
+              <div  class="navbar-collapse navbar-right">
+            <ul class="nav navbar-nav ">
+                    <li> <button class="btn btn-primary btn-sm" onclick="aumentarFuente()">Aumentar Fuente</button></li>
+                    <li><button class="btn btn-primary btn-sm" onclick="disminuirFuente()">Disminuir Fuente</button> </li>
+                    <li><button class="btn btn-primary btn-sm" onclick="cambiarColor()">Cambiar Color</button>  </li>
+                </ul>
+            </div> 
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-      
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
+    </div><hr> 
+    <div class="row">
         <div class="col-md-2">
-          <h2>Menu</h2>
+          <h4>Menu</h4>
            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Inicio</a></li>
+      <ul class="nav navbar-nav nav-pills nav-stacked" >
+        <li ><a href="/">Inicio</a></li>
         {% if session['username'] %}
-          <li> <a href="/usuarios/{{session['username']}}">Editar mis datos</a></li>
+          <li id='users'> Usuarios
+              <ul id="submenu_users" class="nav navbar-nav nav-pills nav-stacked" >
+                  <li> <a href="/usuarios/{{session['username']}}">Editar mis datos</a></li>
+                  <li> <a href="/registroUsuario">Nuevo Usuario</a></li>
+              </ul>
+          </li>
         {% endif %}
-        <li><a href="/restaurantes?cuisine=&borough=">Restaurantes</a></li>
-        <li><a href="{{url_for('registroRestaurante')}}">Nuevo Restaurante</a></li>
+        <li id="rest">Restaurantes
+            <ul id="submenu_rest" class="nav navbar-nav nav-pills nav-stacked" >
+                <li><a href="/restaurantes?cuisine=&borough=">Ver Restaurantes</a></li>
+                <li><a href="{{url_for('registroRestaurante')}}">Nuevo Restaurante</a></li>
+            </ul>
+          </li>
+        
       </ul>
     </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-8">
           {% block content %}{% endblock %}
        </div>
-      </div>
+     </div>
 
       <hr>
 
       <footer>
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>Sitio web creado por Daniel López García</p>
       </footer>
     </div> <!-- /container -->
 
@@ -99,6 +116,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../static/bootstrap/js/bootstrap.js"></script>
+      <script src="../static/js/p5.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
