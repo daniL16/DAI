@@ -2,9 +2,19 @@ import flask
 import shelve
 import os.path
 import pymongo
+import tweepy
 
 from flask import *
 from flask_shelve import init_app
+
+#credenciales twwepy
+consumer_key = 'mNqfsXYES7CHKpCLi1fp8J5yT'
+consumer_secret = 'uapqEQVl95rKOY2NMbLTw5vL2pmj0YT1glzpTi7Esbhk0Il8fh'
+access_token = '268808881-L9Zt2aCRL4udK43Ke3HUn4zXW9MtpI2Wgo7zWKJY'
+access_token_secret = '9HnMe1w8q65Ps661EHiOJOZ3NliKW58NM4vmShX65RH12'
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
 
 app = flask.Flask(__name__)
 app.config['SHELVE_FILENAME'] = 'shelve.db'
@@ -84,7 +94,8 @@ def editarRestaurante(rest_id):
 @app.route('/restaurantes/<rest_id>')
 def echo_restaurante(rest_id):
     rest = collection.find_one({'restaurant_id': rest_id})
-    return render_template('restaurante.html',rest=rest)
+    tweets = api.search(q='Granada', count=3)
+    return render_template('restaurante.html',rest=rest,tweets=tweets)
 
 @app.route('/editarRestaurante',methods=['post'])
 def editarRest():
