@@ -81,6 +81,11 @@ def editarRestaurante(rest_id):
     rest = collection.find({'restaurant_id': rest_id})
     return render_template('editarRestaurante.html',rest=rest)
 
+@app.route('/restaurantes/<rest_id>')
+def echo_restaurante(rest_id):
+    rest = collection.find_one({'restaurant_id': rest_id})
+    return render_template('restaurante.html',rest=rest)
+
 @app.route('/editarRestaurante',methods=['post'])
 def editarRest():
     collection.update({'restaurant_id':request.form['id']},{'restaurant_id':request.form['id'],'name':request.form['nombre'], 'cuisine':request.form['cocina'], 'borough':request.form['borough'], 'address':{'zipcode':request.form['zipcode'],'street':request.form['street'],'building':request.form['building']}})
