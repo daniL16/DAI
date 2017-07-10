@@ -1,10 +1,13 @@
-var map;
 
 function initMap() {
-   var latitud = document.getElementById('latitud').value;
-   var longitud = document.getElementById('longitud').value;
-   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
+    "use strict";
+  var my_rest = {lat: Number(document.getElementById('latitud').value), lng: Number(document.getElementById('longitud').value)};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: my_rest
+        });
+        var marker = new google.maps.Marker({
+          position: my_rest,
+          map: map
+        });
 }
