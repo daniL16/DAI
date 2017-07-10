@@ -94,7 +94,7 @@ def editarRestaurante(rest_id):
 @app.route('/restaurantes/<rest_id>')
 def echo_restaurante(rest_id):
     rest = collection.find_one({'restaurant_id': rest_id})
-    tweets = api.search(q='Granada', count=3)
+    tweets = api.search(q=rest['name'], count=3)
     return render_template('restaurante.html',rest=rest,tweets=tweets)
 
 @app.route('/editarRestaurante',methods=['post'])
