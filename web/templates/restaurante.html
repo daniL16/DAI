@@ -31,7 +31,34 @@
       </tbody>
         </table>
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"><script>
+   Highcharts.chart('container', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Scores'
+    },
+    yAxis: {
+        title: {
+            text: 'Score'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        data: {{scores}}
+    }]
+});
+</script></div>
+    </div>
 </div>
 {% endif %}
 

@@ -1,7 +1,7 @@
 
 function initMap() {
     "use strict";
-  var my_rest = {lat: Number(document.getElementById('latitud').value), lng: Number(document.getElementById('longitud').value)};
+  var my_rest = {lat: parseFloat(document.getElementById('latitud').value), lng: parseFloat(document.getElementById('longitud').value)};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 14,
           center: my_rest
