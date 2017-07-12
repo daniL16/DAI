@@ -3,6 +3,7 @@ import shelve
 import os.path
 import pymongo
 import tweepy
+import feedparser
 
 from flask import *
 from flask_shelve import init_app
@@ -23,7 +24,9 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    rss_url = "http://www.microsiervos.com/index.xml"
+    feed = feedparser.parse( rss_url )
+    return render_template('index.html',feed=feed['entries'])
 
 @app.route('/login',methods=["POST"])
 def login():
