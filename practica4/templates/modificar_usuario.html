@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block body %}
-<form id="registro" action="/usuario/modificar" method="POST">
-    <input name="name" type="text" value="{{ user["name"] }}" />  <br>
-    <input name="email" type="email" value="{{ user["email"] }}" /> <br>
-    <input name="pass" type="password"/><br>
-    <input type="submit" value="Guardar cambios" />
-</form>
-{% endblock %}

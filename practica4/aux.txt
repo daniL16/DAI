@@ -1,8 +1,0 @@
-
-
-/*for (contador = 0; contador < limit ; contador++){
-      var marker = new google.maps.Marker({
-          position: {{coords[contador][1]}},
-          map: map,
-          title: {{coords[contador][0]}}
-  });*/
