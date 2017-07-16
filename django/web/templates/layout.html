@@ -46,7 +46,9 @@
           <a class="navbar-brand" href="#">Mi Web</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            
+             <div  class="navbar-collapse navbar-right">
+            <p>{% if user.is_authenticated %}Hola {{user.username}} {% endif %}</p>
+            </div> 
        
               <div  class="navbar-collapse navbar-right">
             <ul class="nav navbar-nav ">
@@ -75,8 +77,8 @@
           {% endif %}
         <li id="rest">Restaurantes
             <ul id="submenu_rest" class="nav navbar-nav nav-pills nav-stacked" >
-                <li><a href="/restaurantes?cuisine=&borough=">Ver Restaurantes</a></li>
-                <li><a href="/registroRestaurante">Nuevo Restaurante</a></li>
+                <li><a href="/restaurantes/search">Ver Restaurantes</a></li>
+                <li><a href="/restaurantes/add">Nuevo Restaurante</a></li>
             </ul>
           </li>
         

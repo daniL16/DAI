@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
+from restaurantes import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^restaurantes/',include('restaurantes.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^$',views.index,name='index')
 ]

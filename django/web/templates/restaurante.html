@@ -1,43 +1,29 @@
 {% extends 'layout.html' %}
 {% block tittle %}{{rest.name}}{% endblock %}
 {% block content %}
-{% if rest!=None %}
-<h2>{{rest.name}}</h2>
-<input type='hidden' id='latitud' value={{rest.address.coord[0]}}>
-    <input type='hidden' id='longitud' value={{rest.address.coord[1]}}>   
-<div class="row">
-    <div class='col-md-4'>
-     <table class="table table-condensed ">
-         <th></th>
-        <tr class="active"><td>Nombre</td><td>{{rest.name}}</td></tr>
-         <tr><td>Cocina</td><td>{{rest.cuisine}}</td></tr>
-         <tr class="active"><td>Direccion</td><td>{{rest.address.building}}, {{rest.address.street}}. {{rest.address.zipcode}},{{rest.borough}}</td></tr>
-     </table>
-    </div>
-    <div class='col-md-8'>
-    <div id='map' style="height:300px" onload="initMap()">
-        </div></div>
-</div>
+<form action="/restaurantes/search/" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="OK">
+</form>
 
-<div class='row'>
-    <div class="col-md-4">
-        <h4>Tweets Relacionados</h4>
-  <table class="table table-bordered">
-      <thead></thead>
-      <tbody>
-        {% for tweet in tweets %}
-          <tr><td>{{tweet.user.name}}</td><td>{{tweet.text}}</td></tr>  
-        {% endfor %}
-      </tbody>
-        </table>
-    </div>
-    <div class="col-md-4"></div>
-</div>
-{% endif %}
-
-
-
-
-
+ {% for key, value in restaurant.items %}
+	{% if key == "borough" %}
+		{% for b in value %}
+			<h5> ·    {{ b }}</h5>
+		{% endfor %}
+	{% else %}
+		{% if key == "name" %}
+			<h1>{{ value }}</h1>
+		{% else %}
+			<h4>{{ value }}</h4>
+		{% endif %}
+	{% endif %}
+{% endfor %}
 
 {% endblock %}
+
+
+
+
+
